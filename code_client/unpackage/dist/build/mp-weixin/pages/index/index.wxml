@@ -1,0 +1,1 @@
+<view class="content flex-center"><view class="bg flex-center"><view class="ip"><button data-event-opts="{{[['tap',[['createRoom',['$event']]]]]}}" class="mgb-50" bindtap="__e">创建房间</button><button>加入房间</button></view></view></view>
