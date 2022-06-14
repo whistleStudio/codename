@@ -5,6 +5,7 @@ ul {
 }
 
 .flex-center {
+	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -18,4 +19,8 @@ ul {
 }
 .mgb-50 {
 	margin-bottom: 50rpx;
+}
+
+.text-plh{
+	color: rgb(210,210,210);
 }

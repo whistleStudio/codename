@@ -1,13 +1,18 @@
 import App from './App'
+import store from "./store"
+import uView from 'uview-ui';
+Vue.use(uView);
+uni.$u.config.unit = 'rpx'
 
 // #ifdef H5
 var baseUrl = '/api'
 // #endif
 
 // #ifndef H5
-var baseUrl = "https://iot.cfunworld.com/api" 
+var baseUrl = "http://localhost:3000" 
 // #endif
 Vue.prototype.$baseUrl = baseUrl
+Vue.prototype.$sta = store.state
 
 Vue.prototype.$reqPost = function ({url,body,rsv=()=>{},rej=()=>{}}) {
   uni.request({
@@ -53,7 +58,8 @@ import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
-    ...App
+    ...App,
+		store
 })
 app.$mount()
 

@@ -27,6 +27,7 @@
 .content {
   width: 100%;
   height: 100vh;
+  box-sizing: border-box;
 }
 .content .bg {
   width: 100%;
@@ -40,5 +41,27 @@
 .content .bg .ip button {
   width: 65%;
   box-shadow: 1px 1px 1px 1px gray;
+}
+.content .popup {
+  flex-direction: column;
+  width: 100%;
+  height: 350rpx;
+}
+.content .popup input {
+  border: 1px solid #d2d2d2;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding-left: 10rpx;
+  width: 80%;
+  height: 80rpx;
+  font: 30rpx/80rpx "微软雅黑", "Micosoft Yahei", "Micosoft YaHei", "sans-serif";
+}
+.content .popup .btn-group {
+  width: 80%;
+  justify-content: space-between;
+}
+.content .popup .btn-group button {
+  width: 250rpx;
+  margin: 0;
 }
 

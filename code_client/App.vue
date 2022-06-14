@@ -8,49 +8,22 @@
 		},
 		onLaunch: function() {
 			console.log('App Launch')
-			// #ifndef H5
-			uni.authorize({
-			    scope: 'scope.userInfo',
-			    success() {
-			        uni.getUserInfo({
-			              provider: 'weixin',
-			              success: function (infoRes) {
-			                console.log('用户昵称为：' + infoRes.userInfo.nickName);
-			              }
-			        });
-			    }
-			})
-			
-			uni.login({
+			// #ifndef H5		
+  		uni.login({
 			  provider: 'weixin',
 				onlyAuthorize:true,
 			  success: ({code}) => {
-			    this.$reqGet({
-						url:  `https://api.weixin.qq.com/sns/jscode2session?appid=${this.APPID}&secret=${this.APPSECRET}&js_code=${code}&grant_type=authorization_code`,
-						rsv: (data) => {
-							uni.showToast({
-								title: JSON.stringify(data.openid)
-							})
+					this.$reqGet ({
+						url: `${this.$baseUrl}/login/getOpenid`,
+						query: {code},
+						rsv: data => {
 							console.log(data)
+							this.$store.commit("changeObjVal", {k1:"_userInfo", k2:"openid", v:data.openid})	
+							this.$store.dispatch("getUserInfo", data.openid)
 						}
 					})
 			  }
 			});
-			
-// uni.login({
-//   provider: 'weixin',
-//   success: function (loginRes) {
-//     console.log(loginRes.authResult);
-//     // 获取用户信息
-//     uni.getUserInfo({
-//       provider: 'weixin',
-//       success: function (infoRes) {
-// 				console.log(infoRes)
-//         console.log('用户昵称为：' + infoRes.userInfo.nickName);
-//       }
-//     });
-//   }
-// });
 			// #endif
 			
 			// #ifdef H5
@@ -66,6 +39,7 @@
 </script>
 
 <style lang="scss">
+	@import "uview-ui/index.scss";
 	@import url("@/style/base.scss");
 	/*每个页面公共css */
 
